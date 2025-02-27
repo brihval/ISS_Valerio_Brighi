@@ -251,13 +251,36 @@ Copy here the EXACT text fiven by the customer.
  
 
 <h2>Requirement analysis</h2>
- 
-
- 
 
 <h2>Problem analysis</h2>
- 
-
+--- GUI ---
+<table style="width:100%" border="1">
+<tr>
+<td style="width:50%">
+	come da richiesta, deve essere realizzata tramite pagina HTML (restituita, quindi, su richiesta ad un server Web)
+</td>
+</tr>
+<tr>
+	<td style="width:100%" border="1">
+		<b>chi comanda?</b> tutti gli utenti visualizzano la griglia, ma solo il primo utente (owner) che ha aperto la pagina può inviare comandi di gestione
+	</td>
+</tr>
+<tr>
+	<td style="width:100%" border="1">
+		<b>chi crea la GUI?</b> il codice Java funzionante va modificato il meno possibile (parte output della GUI può essere aggiornata con una nuova classe implementante IOutDev per far visualizzare lo stato delle celle sulla pagina)
+	</td>
+</tr>
+<tr>
+	<td style="width:100%" border="1">
+		<b>come si aggiorna la GUI?</b> si deve aggiornare in modo automatico per tutti gli utenti connessi nella sessione di gioco (adesso WebSocket, in futuro WebTransport?)
+	</td>
+</tr>
+<tr>
+	<td style="width:100%" border="1">
+		<b>problema di traffico di rete?</b> dipende: inviare per ogni evoluzione del gioco la griglia aggiornata a ciascun utente connesso aumenta molto il traffico (con aumento degli utenti connessi, anche molto carico computazionale sul server). Soluzione: invio delle sole celle che hanno cambiato lo stato
+	</td>
+</tr>
+</table>
 <h2>Test plans</h2> 
 
 

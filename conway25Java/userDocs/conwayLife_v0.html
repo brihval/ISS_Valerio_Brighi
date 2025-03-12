@@ -281,6 +281,26 @@ Copy here the EXACT text fiven by the customer.
 	</td>
 </tr>
 </table>
+--- Separazione GUI e servizio del server Conway --- 
+<table style="width:100%" border="1">
+<tr>
+<td style="width:50%">
+	<b>Protocollo MQTT?</b> prevede un tipo di interazione che segue il pattern pub/sub (publisher subscriber), dove un terza entità, il broker, è il responsabile della distribuzione dei messaggi inviati dai publisher che hanno come destinatari i subscriber, i quali possono “decidere” di ricevere messaggi da determinati publisher o con determinate caratteristiche
+</td>
+</tr>
+<tr>
+	<td style="width:50%">
+	<b>Che comunicazione ci sarebbe tra GUI e il servizio conway?</b>
+	Si distengono due casi, in base al tipo di utente: nel caso dell’utente owner (o del WSCaller in caso di comunicazione M2M), il flusso dei dati è bidirezionale, perché bisogna comunicare la configurazione iniziale della griglia e i comandi di start, stop, clear ed exit e poi ricevere gli aggiornamenti dello stato delle cellule; nel caso di un utente normale, invece, è necessario solo ricevere gli aggiornamenti delle cellule
+</td>
+</tr>
+<tr>
+	<td style="width:100%">
+		<b>È un problema la comunicazione bidirezionale con pub/sub?</b>
+		No, perché un host può essere sia publisher che subscriber; nel caso dell’utente owner, quindi, la GUI sarà sia publisher che subscriber: invierà al broker la configurazione iniziale della griglia e i comandi start, stop, clear ed exit, mentre riceverà, sempre dal broker, il nuovo stato delle cellule (se esso è cambiato). Analogo comportamento avrà anche il server Conway, mentre si limiterà ad essere un subscriber la GUI di un utente normale. Quindi: le GUI (sia dell’utente owner che non) riceveranno gli aggiornamenti della griglia, pubblicati dal server Conway e ricevuti dal broker, mentre il server Conway riceverà solo i messaggi pubblicati dalla GUI. 
+	</td>
+</tr>
+</table> 
 <h2>Test plans</h2> 
 
 
